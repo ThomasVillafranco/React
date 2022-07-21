@@ -1,6 +1,7 @@
 const path = require ("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require ("html-webpack-plugin");
+const { container } = require("webpack");
 
 
 
@@ -14,6 +15,14 @@ module.exports = {
     mode: "development",
     resolve : {
         extensions : [".js", ".jsx"],
+        alias: {
+            "@components" : path.resolve(__dirname, "src/components/"),
+            "@containers" : path.resolve(__dirname, "src/containers/"),
+            "@styles": path.resolve(__dirname, "src/styles/"),
+            "@pages": path.resolve(__dirname, "src/pages"),
+            "@icons": path.resolve(__dirname, "src/assets/icons/"),
+            "@logos": path.resolve(__dirname, "src/assets/logos/"),
+        }
 
     },
     module : {
@@ -41,6 +50,10 @@ module.exports = {
                         "sass-loader",
                     
                     ],
+            },
+            {
+            test:/\.(png|svg|jpg|gif)$/,
+            type: "asset"
             }
         ]
     },
